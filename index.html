@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<!--
+  UNOFFICIAL PREVIEW. Not a George Mason University website.
+  A replica of https://recreation.gmu.edu/aquatics/ with the linked competition-pool
+  schedule PDF replaced by a live Pool Relay calendar.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Competition Pool &mdash; Mason Recreation (Pool Relay preview)</title>
+<meta name="description" content="Unofficial preview of the Mason Recreation competition pool page with a live Pool Relay lane calendar in place of the schedule PDF.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Condensed:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:  #006633;   /* Mason green */
+    --green-d:#00472a;
+    --gold:   #ffcc33;   /* Mason gold */
+    --ink:    #2f3437;
+    --muted:  #5f6a6e;
+    --rule:   #dcdedd;
+    --sand:   #eeece3;
+    --font:      "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-cond: "Roboto Condensed", "Roboto", Arial, sans-serif;
+  }
+  *,*::before,*::after{ box-sizing:border-box }
+  html{ -webkit-text-size-adjust:100% }
+  body{ margin:0; background:#fff; color:var(--ink); font-family:var(--font); font-size:17px; line-height:1.65 }
+  img{ max-width:100%; display:block }
+  a{ color:var(--green) }
+
+  .preview-note{
+    background:#2b2b2b;color:#fff;font-size:14px;line-height:1.5;
+    padding:9px 18px;text-align:center;font-family:var(--font-cond);
+  }
+  .preview-note b{ color:var(--gold); font-weight:700 }
+  .preview-note a{ color:#fff }
+
+  /* ── Header ─────────────────────────────────────────────────────────────── */
+  .brandbar{
+    padding:16px 30px; display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+  }
+  .gmlogo{
+    width:58px; height:58px; flex:none; display:grid; place-items:center;
+    font-family:var(--font-cond); font-weight:700; font-size:26px; letter-spacing:-.02em;
+    color:var(--green); background:var(--gold); border-radius:6px;
+  }
+  .brandbar .names{ line-height:1.3 }
+  .brandbar .ul{ font-size:13px; color:var(--muted) }
+  .brandbar .mr{
+    font-family:var(--font-cond); font-weight:700; font-size:19px; letter-spacing:.02em;
+    color:var(--ink); text-transform:uppercase;
+  }
+  .brandbar .gmu{ font-size:13px; color:var(--muted) }
+  .brandbar .right{ margin-left:auto; color:var(--green); font-weight:700; font-size:19px }
+
+  .utility{
+    border-top:1px solid var(--rule); padding:10px 30px; display:flex; gap:22px; flex-wrap:wrap;
+    font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted);
+  }
+  .utility a{ color:var(--muted); text-decoration:none }
+
+  nav.main{
+    background:var(--green-d); padding:0 30px; display:flex; gap:26px; flex-wrap:wrap;
+  }
+  nav.main a{
+    color:#fff; text-decoration:none; padding:14px 0; font-size:13px;
+    letter-spacing:.06em; text-transform:uppercase;
+  }
+  nav.main a.here{ box-shadow:inset 0 -3px 0 var(--gold) }
+
+  .pagehead{ background:var(--sand); padding:34px 30px 26px }
+  .pagehead h1{
+    max-width:1180px; margin:0 auto; font-family:var(--font-cond); font-weight:700;
+    font-size:clamp(30px,5vw,46px); color:var(--ink);
+  }
+  .pagehead .crumbs{
+    max-width:1180px; margin:8px auto 0; font-size:12px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--muted);
+  }
+  .pagehead .crumbs a{ color:var(--muted) }
+
+  /* ── Layout ─────────────────────────────────────────────────────────────── */
+  .layout{
+    max-width:1180px; margin:0 auto; padding:32px 30px 10px;
+    display:grid; grid-template-columns:250px 1fr; gap:40px; align-items:start;
+  }
+  @media (max-width:900px){ .layout{ grid-template-columns:1fr; gap:22px } }
+  .sidenav{ border:1px solid var(--rule) }
+  .sidenav a{
+    display:block; padding:13px 18px; border-bottom:1px solid var(--rule);
+    color:var(--green); text-decoration:none; font-size:15px;
+  }
+  .sidenav a:last-child{ border-bottom:0 }
+  .sidenav a.here{ background:var(--sand); font-weight:700; color:var(--ink) }
+
+  .content h2{ margin:0 0 12px; font-family:var(--font-cond); font-weight:700; font-size:28px; color:var(--ink) }
+  .content p{ margin:0 0 14px }
+  .content .specs{ color:var(--muted) }
+
+  /* ── The calendar ───────────────────────────────────────────────────────── */
+  /* The calendar breaks OUT of the text column: twenty lane columns will not fit a 600px
+     measure, and a lane schedule squeezed until it scrolls sideways is the problem this
+     page exists to solve, not a demonstration of solving it. */
+  .cal-band{ background:var(--sand); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);
+             margin:30px 0 0; padding:28px 30px 32px }
+  .cal-inner{ max-width:1360px; margin:0 auto }
+  @media (max-width:760px){ .cal-band{ padding:20px 16px 24px } }
+  .cal-head{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin:0 0 12px }
+  .cal-head h2{ margin:0 }
+  .cal-head .live{
+    font-family:var(--font-cond); font-size:12px; font-weight:700; letter-spacing:.11em;
+    text-transform:uppercase; color:var(--green-d); background:var(--gold);
+    padding:4px 11px; border-radius:3px;
+  }
+  .frame{ border:1px solid var(--rule); overflow:hidden; background:#fff;
+          box-shadow:0 10px 28px rgba(0,102,51,.10) }
+  .frame iframe{ display:block; width:100%; height:780px; border:0 }
+  @media (max-width:760px){ .frame iframe{ height:620px } }
+  .cal-foot{ font-size:15px; color:var(--muted); margin-top:10px }
+
+  .replaces{ background:var(--sand); border-left:4px solid var(--green); padding:20px 24px; margin:30px 0 0 }
+  .replaces h3{ margin:0 0 10px; font-family:var(--font-cond); font-weight:700; font-size:20px; color:var(--ink) }
+  .replaces ul{ margin:0; padding-left:20px; color:var(--muted) }
+  .replaces li{ margin-bottom:9px }
+  .replaces .pdf{
+    display:inline-block; background:#fff; border:1px solid var(--rule); border-radius:3px;
+    padding:6px 12px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+    font-size:13px; color:var(--ink); margin-top:4px;
+  }
+
+  footer.site{ margin-top:44px; background:var(--green-d); color:#fff; padding:32px 30px }
+  footer.site .cols{ max-width:1180px; margin:0 auto; display:flex; gap:44px; flex-wrap:wrap; justify-content:space-between }
+  footer.site a{ color:#fff }
+  footer.site .fine{
+    max-width:1180px; margin:24px auto 0; padding-top:15px;
+    border-top:1px solid rgba(255,255,255,.25); font-size:13px; color:#bcd6c6;
+  }
+  @media (max-width:760px){
+    .brandbar,.utility,nav.main,.pagehead{ padding-left:16px; padding-right:16px }
+    .layout{ padding:20px 16px 6px }
+    nav.main{ gap:14px }
+    body{ font-size:16px }
+  }
+</style>
+</head>
+<body>
+
+<div class="preview-note">
+  <b>Unofficial preview.</b> Not a Mason Recreation page &mdash; a mock-up of
+  <a href="https://recreation.gmu.edu/aquatics/">their Aquatics pages</a>
+  showing the competition-pool schedule PDF replaced by a live calendar.
+</div>
+
+<div class="brandbar">
+  <span class="gmlogo" aria-hidden="true">GM</span>
+  <div class="names">
+    <div class="ul">University Life</div>
+    <div class="mr">Mason Recreation</div>
+    <div class="gmu">George Mason University</div>
+  </div>
+  <div class="right">Mason Recreation</div>
+</div>
+
+<div class="utility">
+  <a href="https://www.gmu.edu/admissions-aid">Apply</a>
+  <a href="https://www.gmu.edu/giving">Give</a>
+  <a href="https://www.gmu.edu">Patriotweb</a>
+  <a href="https://gomason.com">Athletics</a>
+  <a href="https://recreation.gmu.edu/news/">News</a>
+  <a href="https://library.gmu.edu">Library</a>
+</div>
+
+<nav class="main">
+  <a href="https://recreation.gmu.edu/facilities/">Facilities</a>
+  <a href="https://recreation.gmu.edu/programs/">Programs</a>
+  <a href="https://recreation.gmu.edu/events/">Events</a>
+  <a href="https://recreation.gmu.edu/membership/">Membership &amp; Access</a>
+  <a href="https://recreation.gmu.edu/policies/">Policies</a>
+  <a class="here" href="https://recreation.gmu.edu/aquatics/">Aquatics</a>
+</nav>
+
+<div class="pagehead">
+  <h1>Competition Pool</h1>
+  <p class="crumbs"><a href="https://recreation.gmu.edu">Home</a> / <a href="https://recreation.gmu.edu/aquatics/">Aquatics</a> / Competition Pool</p>
+</div>
+
+<div class="layout">
+  <nav class="sidenav" aria-label="Aquatics">
+    <a href="https://recreation.gmu.edu/aquatics/">Aquatics</a>
+    <a href="https://recreation.gmu.edu/aquatics/recreation-pool/">Recreation Pool</a>
+    <a class="here" href="https://recreation.gmu.edu/aquatics/competition-pool/">Competition Pool</a>
+    <a href="https://recreation.gmu.edu/aquatics/swim-lessons/">Swim Lessons &ndash; Group &amp; Private</a>
+    <a href="https://recreation.gmu.edu/aquatics/masters-swimming/">Masters Swimming</a>
+    <a href="https://recreation.gmu.edu/aquatics/aquatics-employment/">Aquatics Employment</a>
+    <a href="https://recreation.gmu.edu/policies/">Policies</a>
+  </nav>
+
+  <div class="content">
+    <h2>The pool</h2>
+    <p class="specs">The Aquatic and Fitness Center competition pool is a 50-metre tank with two
+      movable bulkheads. It sets up as <strong>20 lanes short course (25 yd)</strong> or
+      <strong>8 lanes long course (50 m)</strong>, and carries varsity swimming and diving, Mason
+      club and Masters programmes, and open recreational swimming through the day.</p>
+
+  </div>
+</div>
+
+<section class="cal-band">
+  <div class="cal-inner">
+    <div class="cal-head">
+      <h2>Pool schedule</h2>
+      <span class="live">Live</span>
+    </div>
+    <div class="frame">
+      <iframe src="https://www.poolrelay.com/embed/CodrdkVH4MK9fdDixW2rSA"
+              title="Mason Aquatic and Fitness Center competition pool schedule"></iframe>
+    </div>
+    <p class="cal-foot">Lane by lane, hour by hour. Move between days with the arrows, and tap a
+      programme in the filter to see only that. On a phone the same schedule opens as a list.</p>
+  </div>
+</section>
+
+<div class="layout" style="grid-template-columns:1fr">
+  <div class="content">
+    <div class="replaces">
+      <h3>What this replaces</h3>
+      <ul>
+        <li>The schedule is currently a PDF, and its filename tells the story:
+          <span class="pdf">Comp-Pool-No-Trinity_Master-26-27-3.pdf</span>
+          &mdash; revision three of a master document for the year, re-exported and re-uploaded
+          every time a practice moves.</li>
+        <li><strong>A PDF cannot say &ldquo;today&rdquo;.</strong> A swimmer has to download it,
+          find the right day, and hope the copy on the site is the current one. The calendar opens
+          on today by default.</li>
+        <li>Varsity in lanes 1&ndash;14 while diving has 17&ndash;20, open swim in 15&ndash;16
+          &mdash; the lane split is the whole point of the document, and it survives here rather
+          than being flattened to &ldquo;pool busy&rdquo;.</li>
+        <li>Short course and long course are two configurations of the same water, so the same
+          calendar shows either without a second document.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer class="site">
+  <div class="cols">
+    <div>
+      <strong>Aquatic &amp; Fitness Center</strong><br>
+      George Mason University<br>
+      4520 Patriot Circle, Fairfax, VA 22030
+    </div>
+    <div>
+      <a href="https://recreation.gmu.edu/aquatics/">Aquatics</a><br>
+      <a href="https://recreation.gmu.edu/facilities/">Facilities</a><br>
+      <a href="https://recreation.gmu.edu/policies/">Policies</a>
+    </div>
+  </div>
+  <p class="fine">This page is an unofficial preview built to demonstrate an embedded
+    <a href="https://www.poolrelay.com">Pool Relay</a> calendar. It is not operated by or
+    affiliated with George Mason University. For official hours, schedules and closures see
+    <a href="https://recreation.gmu.edu">recreation.gmu.edu</a>.</p>
+</footer>
+
+</body>
+</html>
