@@ -64,9 +64,9 @@ Two documents, two grid formats, two revision cadences, one building. A swimmer 
 
 Not by eye. Both PDFs were rendered at 200 dpi and the **cell fills sampled per lane per row**, so
 every lane span in the calendar is the span the PDF actually draws rather than a guess at where a
-centred label ends. The legend colours are exact (`#FF0000` closed, `#00FF00` lane rental,
+centered label ends. The legend colors are exact (`#FF0000` closed, `#00FF00` lane rental,
 `#FFFF00` open swim, `#CC99FF` university clubs, `#FF99FF` class, white varsity), which makes the
-read unambiguous. Cell rectangles were then decomposed by *colour plus identical vertical run* and
+read unambiguous. Cell rectangles were then decomposed by *color plus identical vertical run* and
 clipped to the PDF's three lane blocks (1–8, 9–16, 17–20), and each rectangle matched to the
 label printed inside it.
 
