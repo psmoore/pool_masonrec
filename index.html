@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <!--
   UNOFFICIAL PREVIEW. Not a George Mason University website.
-  A replica of https://recreation.gmu.edu/aquatics/ with the linked competition-pool
-  schedule PDF replaced by a live Pool Relay calendar.
+  A replica of https://recreation.gmu.edu/aquatics/ with BOTH pool schedule PDFs replaced
+  by live Pool Relay lane calendars, plus masters and swim lessons.
 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Competition Pool &mdash; Mason Recreation (Pool Relay preview)</title>
-<meta name="description" content="Unofficial preview of the Mason Recreation competition pool page with a live Pool Relay lane calendar in place of the schedule PDF.">
+<title>Aquatics &mdash; Mason Recreation (Pool Relay preview)</title>
+<meta name="description" content="Unofficial preview of the Mason Recreation aquatics page with live Pool Relay lane calendars for both the competition and recreation pools.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Condensed:wght@500;700&display=swap" rel="stylesheet">
@@ -145,124 +145,294 @@
     nav.main{ gap:14px }
     body{ font-size:16px }
   }
+
+  /* ── Added for the Aquatics page ─────────────────────────────────────────── */
+  .intro{ max-width:1180px; margin:0 auto; padding:26px 30px 0; font-size:18px; color:var(--muted) }
+  @media (max-width:760px){ .intro{ padding:20px 16px 0 } }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 30px }
+  @media (max-width:760px){ .wrap{ padding:0 16px } }
+  h2.sec{ font-family:var(--font-cond); font-weight:700; font-size:30px; color:var(--ink); margin:34px 0 6px }
+  .sub{ color:var(--muted); margin:0 0 16px; max-width:70ch }
+
+  .finding{ background:#fffaf0; border-left:4px solid var(--gold); padding:18px 22px; margin:20px 0 0 }
+  .finding b{ color:var(--ink) }
+  .finding p{ margin:0 0 10px } .finding p:last-child{ margin:0 }
+  .finding.bad{ background:#fdf3f2; border-left-color:#b3261e }
+
+  .cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; margin-top:6px }
+  .card{ border:1px solid var(--rule); padding:16px 18px; background:#fff }
+  .card h4{ margin:0 0 4px; font-family:var(--font-cond); font-size:18px; color:var(--ink) }
+  .card .when{ font-weight:700; color:var(--ink); font-size:15px }
+  .card p{ margin:4px 0 0; color:var(--muted); font-size:15px }
+  .card .tag{ display:inline-block; font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+              background:var(--sand); color:var(--muted); padding:2px 8px; margin-top:8px }
+
+  table.hours{ border-collapse:collapse; width:100%; max-width:560px; font-size:15px; margin-top:4px }
+  table.hours th, table.hours td{ border-bottom:1px solid var(--rule); padding:8px 14px 8px 0; text-align:left }
+  table.hours th{ font-family:var(--font-cond); color:var(--ink) }
+  table.hours td.t{ font-weight:700; color:var(--ink) }
+
+  .was-now{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:10px }
+  .pdfbtn{ display:inline-block; background:#eee; border:1px solid #ddd; color:#999; padding:8px 14px;
+           font-size:14px; text-decoration:line-through }
 </style>
 </head>
 <body>
 
 <div class="preview-note">
-  <b>Unofficial preview.</b> Not a Mason Recreation page &mdash; a mock-up of
-  <a href="https://recreation.gmu.edu/aquatics/" target="_blank" rel="noopener noreferrer">their Aquatics pages</a>
-  showing the competition-pool schedule PDF replaced by a live calendar.
+  <b>Unofficial preview.</b> Not a George Mason University page &mdash; a mock-up of
+  <a href="https://recreation.gmu.edu/aquatics/" target="_blank" rel="noopener noreferrer">recreation.gmu.edu/aquatics</a>
+  with both pool schedule PDFs replaced by live calendars. Built by
+  <a href="https://www.poolrelay.com" target="_blank" rel="noopener noreferrer">Pool Relay</a>.
 </div>
 
-<div class="brandbar">
-  <span class="gmlogo" aria-hidden="true">GM</span>
-  <div class="names">
-    <div class="ul">University Life</div>
-    <div class="mr">Mason Recreation</div>
-    <div class="gmu">George Mason University</div>
+<header>
+  <div class="brandbar">
+    <div class="gmlogo">M</div>
+    <div class="names">
+      <div class="ul">George Mason University</div>
+      <div class="mr">Mason Recreation</div>
+      <div class="gmu">Aquatic &amp; Fitness Center</div>
+    </div>
+    <div class="right">Aquatics</div>
   </div>
-  <div class="right">Mason Recreation</div>
-</div>
-
-<div class="utility">
-  <a href="https://www.gmu.edu/admissions-aid" target="_blank" rel="noopener noreferrer">Apply</a>
-  <a href="https://giving.gmu.edu/" target="_blank" rel="noopener noreferrer">Give</a>
-  <a href="https://www.gmu.edu" target="_blank" rel="noopener noreferrer">Patriotweb</a>
-  <a href="https://gomason.com" target="_blank" rel="noopener noreferrer">Athletics</a>
-  <a href="https://www.gmu.edu/news" target="_blank" rel="noopener noreferrer">News</a>
-  <a href="https://library.gmu.edu" target="_blank" rel="noopener noreferrer">Library</a>
-</div>
-
-<nav class="main">
-  <a href="https://recreation.gmu.edu/facilities/" target="_blank" rel="noopener noreferrer">Facilities</a>
-  <a href="https://recreation.gmu.edu/programs/" target="_blank" rel="noopener noreferrer">Programs</a>
-  <a href="https://recreation.gmu.edu/events/" target="_blank" rel="noopener noreferrer">Events</a>
-  <a href="https://recreation.gmu.edu/membership/" target="_blank" rel="noopener noreferrer">Membership &amp; Access</a>
-  <a href="https://recreation.gmu.edu/policies/" target="_blank" rel="noopener noreferrer">Policies</a>
-  <a class="here" href="https://recreation.gmu.edu/aquatics/" target="_blank" rel="noopener noreferrer">Aquatics</a>
-</nav>
+  <div class="utility">
+    <a href="https://recreation.gmu.edu/" target="_blank" rel="noopener noreferrer">Memberships</a>
+    <a href="https://recreation.gmu.edu/facilities-hours/" target="_blank" rel="noopener noreferrer">Facility Hours</a>
+    <a href="https://recreation.gmu.edu/" target="_blank" rel="noopener noreferrer">Programs</a>
+    <a href="https://recreation.gmu.edu/" target="_blank" rel="noopener noreferrer">Employment</a>
+  </div>
+  <nav class="main">
+    <a href="https://recreation.gmu.edu/" target="_blank" rel="noopener noreferrer">Facilities</a>
+    <a class="here" href="#">Aquatics</a>
+    <a href="https://recreation.gmu.edu/" target="_blank" rel="noopener noreferrer">Fitness</a>
+    <a href="https://recreation.gmu.edu/" target="_blank" rel="noopener noreferrer">Intramurals</a>
+    <a href="https://recreation.gmu.edu/" target="_blank" rel="noopener noreferrer">Club Sports</a>
+    <a href="https://recreation.gmu.edu/" target="_blank" rel="noopener noreferrer">Outdoor Adventures</a>
+  </nav>
+</header>
 
 <div class="pagehead">
-  <h1>Competition Pool</h1>
-  <p class="crumbs"><a href="https://recreation.gmu.edu" target="_blank" rel="noopener noreferrer">Home</a> / <a href="https://recreation.gmu.edu/aquatics/" target="_blank" rel="noopener noreferrer">Aquatics</a> / Competition Pool</p>
+  <h1>Aquatics</h1>
+  <div class="crumbs"><a href="https://recreation.gmu.edu/" target="_blank" rel="noopener noreferrer">Mason Recreation</a> &nbsp;/&nbsp; Aquatics</div>
 </div>
 
-<div class="layout">
-  <nav class="sidenav" aria-label="Aquatics">
-    <a href="https://recreation.gmu.edu/aquatics/" target="_blank" rel="noopener noreferrer">Aquatics</a>
-    <a href="https://recreation.gmu.edu/aquatics/recreation-pool/" target="_blank" rel="noopener noreferrer">Recreation Pool</a>
-    <a class="here" href="https://recreation.gmu.edu/aquatics/competition-pool/" target="_blank" rel="noopener noreferrer">Competition Pool</a>
-    <a href="https://recreation.gmu.edu/aquatics/private-swim-lessons/" target="_blank" rel="noopener noreferrer">Swim Lessons &ndash; Group &amp; Private</a>
-    <a href="https://recreation.gmu.edu/aquatics/masters-swimming/" target="_blank" rel="noopener noreferrer">Masters Swimming</a>
-    <a href="https://recreation.gmu.edu/aquatics/aquatics-employment/" target="_blank" rel="noopener noreferrer">Aquatics Employment</a>
-    <a href="https://recreation.gmu.edu/policies/" target="_blank" rel="noopener noreferrer">Policies</a>
-  </nav>
+<p class="intro">
+  Two pools, twenty-six lanes, and everything that happens in them &mdash; varsity, club, masters,
+  lane rentals, aqua aerobics, lessons and open lap swim &mdash; on one page, in the water each
+  one actually uses.
+</p>
 
-  <div class="content">
-    <h2>The pool</h2>
-    <p class="specs">The Aquatic and Fitness Center competition pool is a 50-metre tank with two
-      movable bulkheads. It sets up as <strong>20 lanes short course (25 yd)</strong> or
-      <strong>8 lanes long course (50 m)</strong>, and carries varsity swimming and diving, Mason
-      club and Masters programmes, and open recreational swimming through the day.</p>
-
-  </div>
-</div>
-
-<section class="cal-band">
+<!-- ── Competition pool ──────────────────────────────────────────────────── -->
+<div class="cal-band">
   <div class="cal-inner">
     <div class="cal-head">
-      <h2>Pool schedule</h2>
-      <span class="live">Live</span>
+      <h2>Competition Pool</h2>
+      <span class="live">Live &middot; today</span>
     </div>
+    <p class="sub">Fifty metres, two bulkheads, twenty short-course lanes. Use
+      <strong>Week</strong> for the whole week, or the arrows to move a day at a time.</p>
     <div class="frame">
-      <iframe src="https://www.poolrelay.com/embed/CodrdkVH4MK9fdDixW2rSA"
+      <iframe src="https://www.poolrelay.com/embed/2uFDBpnL1ugakkn8u8QEiQ"
               title="Mason Aquatic and Fitness Center competition pool schedule"></iframe>
     </div>
-    <p class="cal-foot">Lane by lane, hour by hour. Move between days with the arrows, and tap a
-      programme in the filter to see only that. On a phone the same schedule opens as a list.</p>
+    <p class="cal-foot">Every block says which lanes. Tap one for the detail; use the
+      <strong>Filter</strong> row to show a single group.</p>
   </div>
-</section>
+</div>
 
-<div class="layout" style="grid-template-columns:1fr">
-  <div class="content">
-    <div class="replaces">
-      <h3>What this replaces</h3>
-      <ul>
-        <li>The schedule is currently a PDF, and its filename tells the story:
-          <span class="pdf">Comp-Pool-No-Trinity_Master-26-27-3.pdf</span>
-          &mdash; revision three of a master document for the year, re-exported and re-uploaded
-          every time a practice moves.</li>
-        <li><strong>A PDF cannot say &ldquo;today&rdquo;.</strong> A swimmer has to download it,
-          find the right day, and hope the copy on the site is the current one. The calendar opens
-          on today by default.</li>
-        <li>Varsity in lanes 1&ndash;14 while diving has 17&ndash;20, open swim in 15&ndash;16
-          &mdash; the lane split is the whole point of the document, and it survives here rather
-          than being flattened to &ldquo;pool busy&rdquo;.</li>
-        <li>Short course and long course are two configurations of the same water, so the same
-          calendar shows either without a second document.</li>
-      </ul>
+<div class="wrap">
+  <div class="finding">
+    <p><b>This replaces a PDF that is on its eleventh revision.</b> The file is called
+      <code>Comp-Pool-No-Trinity_Master-26-27-11.pdf</code> &mdash; revision eleven of a master
+      document for the year. When we first transcribed this pool we were reading revision three.
+      Nothing on the page says which revision you are looking at, or when it changed.</p>
+    <p style="margin-top:10px">The calendar above carries the whole of revision 11: <b>65 bookings a
+      week</b> across twenty lanes, including everything the earlier revision had left out &mdash;
+      Mako&rsquo;s morning and evening blocks, the Fairfax Foxes, Centreville Swim Club, the crew
+      swim tests, Shark Tank and Club Swim.</p>
+  </div>
+
+  <div class="finding bad">
+    <p><b>Two things in the published grid do not add up.</b></p>
+    <p>&#9888;&#65039; <b>Friday, 5pm.</b> Lanes 14&ndash;16 are labelled <em>&ldquo;Open Swim
+      5p&ndash;7p&rdquo;</em>, but the block is only drawn to 6pm &mdash; at six, FFX Foxes take
+      those lanes through 7:15. A swimmer who reads the label arrives for an hour that is not
+      there.</p>
+    <p>&#9888;&#65039; <b>Tuesday, 8pm.</b> A <em>Splash Night</em> booking holds the entire
+      competition pool from 8 to 10pm, on top of Masters, Club Swim, the Foxes and Nova Meteors,
+      all of whom the grid puts in the water at the same time. One of the two is wrong, and no PDF
+      can tell you which.</p>
+  </div>
+</div>
+
+<!-- ── Recreation pool ───────────────────────────────────────────────────── -->
+<div class="cal-band">
+  <div class="cal-inner">
+    <div class="cal-head">
+      <h2>Recreation Pool</h2>
+      <span class="live">Live &middot; today</span>
     </div>
+    <p class="sub">Six lanes and the zero-depth ramp. Mostly open lap swimming &mdash; which is
+      exactly why the exceptions matter.</p>
+    <div class="frame">
+      <iframe src="https://www.poolrelay.com/embed/Fp6ZUyUo00ARHTaJAVXPXl"
+              title="Mason Aquatic and Fitness Center recreation pool schedule"></iframe>
+    </div>
+    <p class="cal-foot">The grey blocks are the mid-day closures. They are the thing a lap swimmer
+      most needs to know and the thing a wall of yellow hides.</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="finding">
+    <p><b>The recreation pool closes twice on a Friday and once on a Tuesday</b> &mdash;
+      8&ndash;11am and 3&ndash;5pm on Friday, 3&ndash;5pm on Tuesday. On the printed sheet those
+      are red bands in a field of yellow, on a separate PDF from the competition pool, published on
+      a different cadence: the competition pool is a master for the year, the recreation pool is a
+      single week (<code>Rec-Pool-9.14-9.20.26.pdf</code>).</p>
+    <p style="margin-top:10px">Two documents, two formats, two revision schedules, one building.</p>
+  </div>
+
+  <h2 class="sec">Pool hours</h2>
+  <p class="sub">Derived from the two schedules rather than typed a second time &mdash; which is the
+    point: there is no third place for them to go stale.</p>
+  <table class="hours">
+    <tr><th>Day</th><th>Competition Pool</th><th>Recreation Pool</th></tr>
+    <tr><td class="t">Mon&ndash;Thu</td><td>5:00am &ndash; 10:00pm</td><td>6:15am &ndash; 9:30pm</td></tr>
+    <tr><td class="t">Friday</td><td>5:00am &ndash; 8:00pm</td><td>6:15am &ndash; 7:30pm <em>(closed 8&ndash;11am, 3&ndash;5pm)</em></td></tr>
+    <tr><td class="t">Saturday</td><td>6:00am &ndash; 6:00pm</td><td>8:15am &ndash; 5:30pm</td></tr>
+    <tr><td class="t">Sunday</td><td>7:00am &ndash; 8:00pm</td><td>8:15am &ndash; 7:30pm</td></tr>
+  </table>
+</div>
+
+<!-- ── One calendar, both pools ──────────────────────────────────────────── -->
+<div class="cal-band">
+  <div class="cal-inner">
+    <div class="cal-head">
+      <h2>Or: one calendar, both pools</h2>
+      <span class="live">Live</span>
+    </div>
+    <p class="sub">The same data with a <strong>Pools</strong> menu instead of two embeds. The menu
+      offers <em>Competition Pool</em> and <em>Recreation Pool</em> and nothing else &mdash; not the
+      other fifty-seven pools in the system.</p>
+    <div class="frame">
+      <iframe src="https://www.poolrelay.com/embed/UMoIDBjRcduOXwl9oe6J1q"
+              title="Mason Aquatics — both pools, lane by lane"></iframe>
+    </div>
+    <p class="cal-foot">Both shapes are the same schedule. Which one belongs on the page is a
+      question for whoever maintains it.</p>
+  </div>
+</div>
+
+<!-- ── Masters ───────────────────────────────────────────────────────────── -->
+<div class="wrap">
+  <h2 class="sec">Masters Swimming</h2>
+  <p class="sub">Four practices a week, and they are already in the calendars above &mdash; in the
+    lanes the competition pool grid gives them.</p>
+  <div class="cards">
+    <div class="card"><h4>Tuesday &amp; Thursday</h4><p class="when">7:00 &ndash; 8:30pm</p><p>Lanes 1&ndash;8</p></div>
+    <div class="card"><h4>Friday</h4><p class="when">6:00 &ndash; 7:30pm</p><p>Lanes 17&ndash;20</p></div>
+    <div class="card"><h4>Saturday</h4><p class="when">10:30am &ndash; noon</p><p>Lanes 9&ndash;16</p></div>
+    <div class="card"><h4>Sunday</h4><p class="when">8:15 &ndash; 9:45am</p><p>Lanes 9&ndash;16</p></div>
+  </div>
+  <div class="finding">
+    <p><b>The Masters page and the pool grid agree on the times and disagree on the season.</b>
+      The masters page heads this table <em>&ldquo;Summer 2026 Practice Schedule&rdquo;</em> and then
+      lists no-practice dates running from <b>September through December</b> &mdash; 25, 26 and 27
+      September; 3, 23, 24 and 25 October; 7, 19, 20, 21, 26 and 27 November; 3, 4, 5, 6 and 18
+      December.</p>
+    <p style="margin-top:10px">A calendar has somewhere to put those. A heading that says
+      &ldquo;Summer&rdquo; over a list of December dates does not.</p>
+  </div>
+</div>
+
+<!-- ── Swim lessons ──────────────────────────────────────────────────────── -->
+<div class="wrap">
+  <h2 class="sec">Swim Lessons</h2>
+  <p class="sub">Three group programs, each behind its own expander on the lessons page.</p>
+  <div class="cards">
+    <div class="card">
+      <h4>Preschool Level 1 &mdash; Minnows</h4>
+      <p class="when">Saturdays, 11:15 &ndash; 11:45am</p>
+      <p>Ages 3&ndash;5. Water adjustment and beginning skills. 30 minutes, $150.</p>
+      <span class="tag">Spring 2026 session</span>
+    </div>
+    <div class="card">
+      <h4>Level 2 &mdash; Sharks</h4>
+      <p class="when">Wednesdays, 6:00 &ndash; 6:45pm</p>
+      <p>Ages 6&ndash;9. Basic strokes, water safety, confidence. 45 minutes, $175.</p>
+      <span class="tag">Spring 2026 session</span>
+    </div>
+    <div class="card">
+      <h4>Adult Level 1 &mdash; Dolphins</h4>
+      <p class="when">Fridays 4:30 &ndash; 5:15pm &middot; Saturdays noon &ndash; 12:45pm</p>
+      <p>Mason students, no experience required. 45 minutes, $80.</p>
+      <span class="tag">Spring 2026 session</span>
+    </div>
+  </div>
+
+  <div class="finding bad">
+    <p><b>&#9888;&#65039; The lessons page is advertising a session that ended six months ago.</b>
+      As of today it reads <em>&ldquo;Registration for group lessons will open for Spring 2026 on
+      January 19th, 2026, and close February 4th, 2026&rdquo;</em>, and lists class dates in
+      February and March. There is no fall session anywhere on the page, and nothing says there
+      isn&rsquo;t one.</p>
+    <p style="margin-top:10px"><b>It also never says which pool.</b> Not in the group lesson
+      descriptions, not in the private lesson descriptions. And the lesson times are on neither
+      pool schedule &mdash; no water is reserved for them on either PDF. The Wednesday 6pm class
+      would need lanes that the recreation pool grid gives to Mako.</p>
+    <p style="margin-top:10px">The Spring 2026 classes are in the calendar at their published dates
+      and times, in the recreation pool, so an operator can see what they occupied. When a fall
+      session is scheduled it lands on the same calendar as everything else &mdash; and the pool it
+      lands in is no longer a thing anyone has to guess.</p>
+  </div>
+</div>
+
+<!-- ── What this replaces ────────────────────────────────────────────────── -->
+<div class="wrap">
+  <div class="replaces">
+    <h3>What the two calendars replace</h3>
+    <div class="was-now">
+      <span class="pdfbtn">Comp-Pool-No-Trinity_Master-26-27-11.pdf</span>
+      <span class="pdfbtn">Rec-Pool-9.14-9.20.26.pdf</span>
+    </div>
+    <ul style="margin-top:14px">
+      <li>A swimmer wanting a lane at 6pm had to open <b>both</b> PDFs and read two different grid
+        formats, then check the masters page and the lessons page separately.</li>
+      <li>Neither PDF can say <em>today</em>. Both are pictures of a week.</li>
+      <li>The competition pool grid is drawn in one-hour rows, so a practice that ends at 6:15
+        cannot be drawn honestly &mdash; which is how the Friday open-swim label came to promise an
+        hour that is not there.</li>
+      <li>The recreation pool legend lists <b>Mason Life</b> and <b>Streamline</b> as programs, and
+        neither appears anywhere in the week it publishes.</li>
+    </ul>
   </div>
 </div>
 
 <footer class="site">
   <div class="cols">
     <div>
-      <strong>Aquatic &amp; Fitness Center</strong><br>
-      George Mason University<br>
+      <b>Mason Recreation</b><br>
+      Aquatic &amp; Fitness Center<br>
       4520 Patriot Circle, Fairfax, VA 22030
     </div>
     <div>
-      <a href="https://recreation.gmu.edu/aquatics/" target="_blank" rel="noopener noreferrer">Aquatics</a><br>
-      <a href="https://recreation.gmu.edu/facilities/" target="_blank" rel="noopener noreferrer">Facilities</a><br>
-      <a href="https://recreation.gmu.edu/policies/" target="_blank" rel="noopener noreferrer">Policies</a>
+      <b>Aquatics</b><br>
+      <a href="https://recreation.gmu.edu/aquatics/" target="_blank" rel="noopener noreferrer">Aquatics home</a><br>
+      <a href="https://recreation.gmu.edu/aquatics/masters-swimming/" target="_blank" rel="noopener noreferrer">Masters swimming</a><br>
+      <a href="https://recreation.gmu.edu/aquatics/private-swim-lessons/" target="_blank" rel="noopener noreferrer">Swim lessons</a>
+    </div>
+    <div>
+      <b>Hours</b><br>
+      <a href="https://recreation.gmu.edu/facilities-hours/" target="_blank" rel="noopener noreferrer">Facility hours</a>
     </div>
   </div>
-  <p class="fine">This page is an unofficial preview built to demonstrate an embedded
-    <a href="https://www.poolrelay.com" target="_blank" rel="noopener noreferrer">Pool Relay</a> calendar. It is not operated by or
-    affiliated with George Mason University. For official hours, schedules and closures see
-    <a href="https://recreation.gmu.edu" target="_blank" rel="noopener noreferrer">recreation.gmu.edu</a>.</p>
+  <p class="fine">This page is an unofficial preview built to demonstrate embedded
+    <a href="https://www.poolrelay.com" target="_blank" rel="noopener noreferrer">Pool Relay</a>
+    calendars. It is not operated by or affiliated with George Mason University or Mason
+    Recreation. For official schedules, hours and closures see
+    <a href="https://recreation.gmu.edu/aquatics/" target="_blank" rel="noopener noreferrer">recreation.gmu.edu/aquatics</a>.</p>
 </footer>
 
 </body>
